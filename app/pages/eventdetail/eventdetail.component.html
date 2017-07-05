@@ -1,0 +1,113 @@
+<div class="box box-default">
+<div class="box-body">
+
+
+<div class="row" style="padding-right: 30px;">
+  <div class="pull-right">
+
+        <button title="" data-placement="top" data-toggle="tooltip" data-original-title="Trash" class="btn btn-sm btn-white"> Archive</button>
+        
+        <button (click)="printToPDF()"
+                title="" data-placement="top" data-toggle="tooltip" type="button" data-original-title="Print" class="btn btn-sm btn-white"><i class="fa fa-print"></i> Print to PDF</button>
+        
+        <a href="#" routerLink="/events" class="btn btn-sm btn-primary">EXIT</a>      
+  </div>
+</div>
+
+<!-- ROW -->
+<div class="row" style="padding-left: 30px; font-size: 12pt;" >
+
+    <!-- LEFT COL -->
+    <div class="col-md-8">
+
+                    <div class="row" style="padding-left: 30px; font-size: 12pt;" >
+                    <span class="label label-info">{{eventmessage.priority}}</span> {{ eventmessage.messagets }} at 00:00
+                    </div>
+
+                    <div class="row" style="padding-left: 30px;" >
+                        <h3>{{ eventmessage.title }}</h3>
+                    </div>
+
+                    <div class="row" style="padding-left: 30px; font-size: 12pt;" >
+                        <b>Office/Officer:</b> {{ office.officename }} / {{ author.firstname }} {{ author.lastname }}
+                    </div>
+
+                    <div class="row" style="padding-left: 30px; font-size: 12pt;" >
+                        <b>Itinerary:</b> &nbsp;&nbsp;&nbsp; from {{ itinerary.destinationfrom }} to {{ itinerary.destinationto }}
+                    </div>
+
+                    <div class="row" style="padding-left: 30px; font-size: 12pt;" >
+                        <b>BCP:</b> &nbsp;&nbsp;&nbsp; {{ eventmessage.bcp }}
+                    </div>
+
+                     <div class="row" style="padding: 25px; font-size: 12pt; ">{{ eventmessage.content}}</div>
+
+                     <div class="row" style="padding: 25px; font-size: 12pt; ">     
+                            <hr>
+                            Attachments: <br><br>
+                            <p *ngFor='  let attachment of attachments '>
+                                <a href="{{baseRestUrl}}download/{{attachment.idmessage}}/{{attachment.id}}" target="_new">{{ attachment.filename }}</a>
+                            </p>                   
+                    </div>
+
+    <!-- end left col -->    
+    </div>
+
+    <!-- RIGHT COL -->
+    <div class="col-md-4">
+
+
+
+                    <div class="row" style="padding-left: 30px; font-size: 12pt;" >
+
+                        <div class="col-md-12">
+                            <h3>Offences</h3>
+                            <ul>
+                                <span *ngFor="let offence of offences">
+                                <li *ngIf=" offence.selected " >
+                                    {{offence.description}}
+                                    </li>
+                                    </span>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-12">
+                            <h3>Action requirerd</h3>
+                            <ul>
+                                <span *ngFor="let actionr of actionsrequired">
+                                <li *ngIf=" actionr.selected " >
+                                    {{actionr.description}}
+                                    </li>
+                                    </span>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-12">
+                            <h3>Action implemented</h3>
+                            <ul>
+                                <span *ngFor="let actioni of actionsimplemented">
+                                <li *ngIf=" actioni.selected " >
+                                    {{actioni.description}}
+                                    </li>
+                                    </span>
+                            </ul>
+                        </div>    
+
+                    </div>
+
+
+
+    <!-- end right col -->    
+    </div>
+    
+<!-- end row -->
+</div>
+
+
+
+
+
+
+
+
+

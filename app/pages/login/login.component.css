@@ -1,0 +1,26 @@
+
+*::after, *::before {
+    box-sizing: border-box;
+}
+*::after, *::before {
+    box-sizing: border-box;
+}
+.login-box, .register-box {
+    margin: 7% auto;
+    width: 360px;
+}
+* {
+    box-sizing: border-box;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.login-logo, .register-logo {
+    font-size: 35px;
+    font-weight: 300;
+    margin-bottom: 25px;
+    text-align: center;
+}

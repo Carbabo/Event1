@@ -1,0 +1,181 @@
+<div class="box box-default">
+    <div class="box-body">
+
+        <div class="row">
+
+            <!-- LEFT COL -->
+            <div class="col-md-9">
+
+                <FORM class="form-horizontal">
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button class="btn btn-sm btn-primary" type="button" (click)="updateMessage()">
+                            &nbsp; Send Message
+                            </button>
+                            <button class="btn btn-sm btn-primary" type="button" (click)="discardMessage()">
+                            &nbsp; Discard
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <label class="col-sm-12 control-label" style="font-size: 12pt;">TITLE:</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="text" [(ngModel)]="event_message.title">
+                        </div>
+                    </div>
+
+                    <HR>
+
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <label class="col-sm-12 control-label">Date:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="date" [ngModel]="event_message.messagets | date:'yyyy-MM-dd'" (ngModelChange)=" event_message.messagets = $event">
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-12 control-label">Itinerary:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control" [(ngModel)]="event_message.itinerary">
+                                    <option *ngFor='let itineray of itinerarys' [value]="itineray.id" > {{itineray.destinationfrom}} to {{itineray.destinationto}} </option>                 
+                                </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <label class="col-sm-12 control-label">BCP:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control" [(ngModel)]="event_message.bcp">
+                                    <option value="LAND">LAND</option>
+                                    <option value="SEA">SEA</option>
+                                    <option value="AIR">AIR</option>
+                                </select>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-12 control-label">Priority:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control" [(ngModel)]="event_message.priority">
+                                    <option value="P1">P1</option>
+                                    <option value="P2">P2</option>
+                                    <option value="P3">P3</option>
+                                    <option value="P4">P4</option>
+                                </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="padding-left: 20px; padding-right: 5px;">
+                        <div class="col-sm-12">
+                            Content:
+                            <br>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <a class="panel-title">
+                                        USERNAME Timestamp
+                                    </a>
+                                </div>
+                                <div class="panel-body"style="padding:0;">
+                                    <textarea class="form-control" rows="7" [(ngModel)]="event_message.content">
+                                    </textarea>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#myModal">Attachments</button>
+                        <br>
+                        <br>
+                        <p *ngFor='  let attachment of attachments '>
+                            <a href="{{baseRestUrl}}download/{{attachment.idmessage}}/{{attachment.id}}" target="_new">{{ attachment.filename }}</a>
+                        </p>
+
+                    </div>
+
+                </FORM>
+
+
+
+
+
+            </div>
+            <!-- end left col -->
+
+            <!-- RIGHT COL -->
+            <div class="col-md-3">
+
+
+                <div class="col-md-12">
+                    <h3>Offences</h3>
+                    <div class="checkbox" *ngFor="let offence of offences">
+                        <label><input type="checkbox" [value]="offence.code" [(ngModel)]="offence.selected" >{{offence.description}}</label>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <h3>Action requirerd</h3>
+                    <div class="checkbox" *ngFor="let actionr of actionsrequired">
+                        <label><input type="checkbox" [value]="actionr.code" [(ngModel)]="actionr.selected" >{{actionr.description}}</label>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <h3>Action implemented</h3>
+                    <div class="checkbox" *ngFor="let actioni of actionsimplemented">
+                        <label><input type="checkbox" [value]="actioni.code" [(ngModel)]="actioni.selected" >{{actioni.description}}</label>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end right col -->
+
+        </div>
+        <!-- end row -->
+
+
+
+
+
+    </div>
+    <!-- box body -->
+</div>
+<!-- box -->
+
+
+
+
+
+<!-- Modal -->
+<div id="myModal" [hidden]="hideModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+
+                <p-fileUpload name="myfile[]" id="myfile" multiple="multiple" url="{{baseRestUrl}}message/{{event_message.id}}/fileupload"
+                    accept="*/*" maxFileSize="10000000" (onUpload)="onUpload($event)" showButtons="false"></p-fileUpload>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="CloseModal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

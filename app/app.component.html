@@ -1,0 +1,22 @@
+<app-header [hidden]=" currentUser.id == -1 "	>{{ 'LOADING' | translate }} header...</app-header>
+
+<app-menu-aside  [hidden]=" currentUser.id == -1 "  [links]="mylinks">{{ 'LOADING' | translate }} menu...</app-menu-aside>
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+	<!-- Content Header (Page header) -->
+	<toaster-container [toasterconfig]="toastrConfig"></toaster-container>
+	<app-breadcrumb></app-breadcrumb>
+
+	<!-- Main content -->
+	<section class="content"> 
+				<router-outlet></router-outlet>
+	</section>
+	<!-- /.content -->
+
+</div>
+<!-- /.content-wrapper -->
+<app-footer >{{ 'LOADING' | translate }} footer...</app-footer>
+<app-aside  [hidden]=" currentUser.id == -1 " >{{ 'LOADING' | translate }} control sidebar...</app-aside>

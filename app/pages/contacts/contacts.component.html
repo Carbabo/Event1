@@ -1,0 +1,132 @@
+
+
+
+<div class="box box-default">
+<div class="box-body">
+
+<div class="row" style="padding-bottom: 10px;">
+    <div class="col-md-12">
+        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" (click)="newOfficer()" id="OpenModal"> New Officer</button>
+    </div>
+</div>
+
+
+        <div class="table-responsive">
+        <table class="table table-hover">
+
+                <tr>
+                    <th>Username</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Office</th>
+                    <th>Localview</th>
+                    <th>Admin</th>
+                    <td></td>
+                </tr>    
+        
+                <tr *ngFor=' let officer of officers '>
+                    <td>{{ officer.username }}</td>
+                    <td>{{ officer.firstname }}</td>
+                    <td>{{ officer.lastname }}</td>
+                    <td>{{ officer.email }}</td>
+                    <td>{{ officer.officeid }}</td>
+                    <td>{{ officer.localview }}</td>
+                    <td>{{ officer.admin }}</td>
+                    <td>
+                        <button class="btn btn-xs btn-primary" (click)="editOfficer(officer)"> Edit</button>
+                        </td>
+                </tr>
+
+        </table>
+        </div>
+
+
+
+    <hr>
+
+{{data | json}}
+
+</div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="myModal" [hidden]="hideModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Officer</h4>
+      </div>
+
+      <div class="modal-body">
+ 
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" [(ngModel)]="officer.username"  >
+                            </div> 
+                            <div class="form-group">
+                                <label for="firstname">Firstname</label>
+                                <input type="text" class="form-control" id="firstname" [(ngModel)]="officer.firstname"  >
+                            </div>   
+                            <div class="form-group">
+                                <label for="lastname">Lastname</label>
+                                <input type="text" class="form-control" id="lastname" [(ngModel)]="officer.lastname">
+                            </div>                                                         
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" class="form-control" id="email" [(ngModel)]="officer.email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userpassword">Password</label>
+                                <input type="password" class="form-control" id="userpassword" placeholder="Password"  [(ngModel)]="officer.password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="office">Office</label>
+                                <input type="email" class="form-control" id="office" [(ngModel)]="officer.officeid">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="localview">Local or Global view</label>
+                                <select class="form-control" id="localview" [(ngModel)]="officer.localview">
+                                    <option value=1>LOCAL VIEW</option>
+                                    <option value=0>GLOBAL VIEW</option>
+                                </select>
+                            </div>
+
+                             <div class="form-group">
+                                <label for="adminview">Administrator</label>
+                                <select class="form-control" id="adminview" [(ngModel)]="officer.admin">
+                                    <option value=1>YES</option>
+                                    <option value=0>NO</option>
+                                </select>
+                            </div>                           
+
+
+
+      </div>
+      <div class="modal-footer">
+
+          <button   class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" *ngIf=" modalMode !== 'new' " 
+                    (click)="deleteOfficer()"> DELETE </button>
+
+          <button   class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" *ngIf=" modalMode !== 'new' " 
+                    (click)="updateOfficer()"> UPDATE </button>
+
+          <button   class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" *ngIf=" modalMode !== 'edit' " 
+                    (click)="addOfficer()"> ADD Officer </button>
+                    
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="CloseModal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,52 @@
+
+
+
+
+<div class="box box-default">
+<div class="box-body">
+
+<table class="table table-hover table-mail">
+
+<thead>
+
+  <th colspan="3">{{tablecaption}}</th>
+
+  <th style="text-align: center;">BCP</th>
+
+  <th style="text-align: center;">Office</th>
+
+</thead>
+
+<tbody>
+
+      <tr *ngFor='  let message of messages '>
+        
+        <td width="10px"><span class="label label-info">{{message.priority}}</span></td>
+
+        <td align="left">{{ message.messagets | date:'dd.MM.yyyy' }} at 00:00</td>
+
+        <td>        
+            <button *ngIf=" message.title == '' " class="btn btn-xs btn-primary" type="button" (click) = "discardMessage(message)" >
+            &nbsp;Discard&nbsp;</button>
+            <a href="#" [routerLink]="['/eventdetail', message.id ]" >{{ message.title=="" ? "No title":message.title }}</a>  
+        </td>          
+
+        <td align="center" width="10px">{{message.bcp}}</td>          
+
+        <td align="center">{{ message.officename }}</td>            
+      
+      </tr>
+
+</tbody>
+
+</table>
+
+</div>
+</div>
+
+<div [hidden]="true">
+Messages: <hr>
+<div *ngFor=" let message of messages" >
+    {{ message | json }} <hr>
+</div>
+</div>

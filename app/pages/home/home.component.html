@@ -1,0 +1,45 @@
+
+<div class="row">
+
+		<div class="col-md-3 col-sm-6 col-xs-12" *ngFor="let cmessage of countmessages">
+		<div class="info-box">
+					<span class="info-box-icon bg-aqua"><i class="fa fa-bolt"></i></span>
+
+					<div class="info-box-content">
+					<span class="info-box-text">Events from<br>{{cmessage.officename}}</span>
+					<span class="info-box-number">{{cmessage.count}}</span>
+					</div>
+					<!-- /.info-box-content -->
+		</div>          
+		</div>
+		
+
+</div>		
+
+
+<div class="box box-default">
+<div class="box-body">
+
+	<div class="row">
+		
+		<div class="col-md-6">
+			<p-gmap [options]="mapOptions" 
+					[style]="{'width':'100%','height':'700px'}" 
+					[overlays]="overlays" >
+					</p-gmap>
+		</div>
+
+		<div class="col-md-6" >
+			<font style="font-size: 22px;" >Distribution of events</font>		
+			<br>
+			<br>	
+			<p-chart #chart type="bar" [data]="data" [options]="options"></p-chart>
+		</div>
+
+	</div>
+
+
+
+</div>
+</div>
+
